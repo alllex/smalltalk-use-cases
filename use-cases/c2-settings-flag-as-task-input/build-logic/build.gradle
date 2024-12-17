@@ -1,0 +1,12 @@
+plugins { 
+    id 'java-gradle-plugin' 
+}
+
+gradlePlugin {
+    plugins {
+        mySettingsPlugin {
+            id = 'my-settings-plugin'
+            implementationClass = 'my.SettingsPlugin'
+        }
+    }
+}

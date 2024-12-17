@@ -1,0 +1,13 @@
+plugins {
+    id("my-java-application")
+}
+
+application {
+    mainClass = "Main"
+}
+
+dependencies {
+    implementation(project(":lib0"))
+    implementation(project(":lib1"))
+    implementation(project(":lib2"))
+}

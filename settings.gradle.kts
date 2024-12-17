@@ -1,1 +1,2 @@
-rootProject.name = "smalltalk-usecases"
+
+rootProject.name = "smalltalk-use-cases"

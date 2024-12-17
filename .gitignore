@@ -7,9 +7,14 @@ build
 *.iml
 out
 
+# VS Code
+.vscode
+
 # Platform-specific
 # MacOS
 .DS_Store
 
 # Custom development files
 /dev
+
+/gradle/dist
