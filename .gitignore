@@ -2,6 +2,11 @@
 .gradle
 build
 
+# Do not check in the wrapper
+**/gradle/wrapper
+gradlew
+gradlew.bat
+
 # IDEA
 .idea
 *.iml
