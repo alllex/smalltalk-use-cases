@@ -1,8 +1,7 @@
-
-
 abstract class RenderSamples : DefaultTask() {
     @get:Input
     abstract val samples: ListProperty<LibrarySamples>
+
     @get:OutputFile
     abstract val output: RegularFileProperty
 
@@ -12,9 +11,9 @@ abstract class RenderSamples : DefaultTask() {
     }
 
     private fun render(samples: List<LibrarySamples>, output: File) {
-        output.writeText("# Samples for libraries\n\n")
+        output.writeText("# Samples for libraries")
         for (samplesOfLibrary in samples) {
-            output.appendText("## Samples for '${samplesOfLibrary.library}'\n")
+            output.appendText("\n\n## Samples for '${samplesOfLibrary.library}'\n")
             for (sample in samplesOfLibrary.samples) {
                 output.appendText("\n${sample.name}\n```\n${sample.code}\n```")
             }
@@ -26,11 +25,30 @@ abstract class RenderSamples : DefaultTask() {
 
 // Approach 1: map reduce
 
+val allLibraries: Provider<List<LibraryMarker>> =
+    isolated.models.request(LibraryMarker::class, allprojects)
+        .present // leniently find all projects that are libraries
+
+val allLibrarySamples1: Provider<List<LibrarySamples>> =
+    allLibraries.flatMap { libraryMarkers ->
+        println("Y: libraryMarkers: $libraryMarkers")
+        val libraryProjects = libraryMarkers.map {
+            project.findProject(it.projectPath)!!
+        }
+
+        val allSamples: Provider<List<LibrarySamples>> =
+            isolated.models.request(LibrarySamples::class, libraryProjects)
+                .all
+        allSamples // strictly require each library to provide samples
+    }
+
 // Approach 2: lenient models
 
+val allLibrarySamples2: Provider<List<LibrarySamples>> =
+    isolated.models.request(LibrarySamples::class, allprojects)
+        .present // leniently
 
 tasks.register<RenderSamples>("samplesDocument") {
-    // TODO: configure `samples` input
-    samples.add(LibrarySamples("lib", listOf(LibrarySample("sample1", "// comment"))))
+    samples = allLibrarySamples2
     output = layout.buildDirectory.file("samples.md")
 }
