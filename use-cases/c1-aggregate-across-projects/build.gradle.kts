@@ -25,6 +25,7 @@ abstract class RenderSamples : DefaultTask() {
 
 // Approach 1: map reduce
 
+// TODO: this approach does not work yet
 val allLibraries: Provider<List<LibraryMarker>> =
     isolated.models.request(LibraryMarker::class, allprojects)
         .present // leniently find all projects that are libraries
