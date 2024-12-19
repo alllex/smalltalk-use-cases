@@ -8,6 +8,8 @@ TBD
 At the moment of writing, running the use cases requires a custom-built Gradle distribution from:
 - https://github.com/gradle/gradle/pull/31813
 
+(except for use cases ending in `-vintage` - for those, any recent Gradle release will do)
+
 For most convenience, build an "all distribution" of Gradle,
 following [these instructions](https://github.com/gradle/gradle/blob/master/CONTRIBUTING.md#building-a-distribution-from-source):
 
