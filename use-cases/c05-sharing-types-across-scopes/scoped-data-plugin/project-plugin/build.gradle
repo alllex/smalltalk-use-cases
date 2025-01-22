@@ -1,0 +1,22 @@
+plugins {
+    id 'java-gradle-plugin'
+}
+
+dependencies {
+    implementation group: 'com.google.guava', name: 'guava', version: '33.4.0-jre'
+    implementation ("api-build:api:1.0")
+    implementation ("api-build:impl:1.0")
+}
+
+repositories {
+    mavenCentral()
+}
+
+gradlePlugin {
+    plugins {
+        scopedDataProjectPlugin {
+            id = 'scoped-data-project-plugin'
+            implementationClass = 'com.example.scopeddata.projectplugin.ProjectPlugin'
+        }
+    }
+}

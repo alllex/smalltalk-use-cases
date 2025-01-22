@@ -1,0 +1,11 @@
+plugins {
+    id 'java-gradle-plugin'
+}
+
+dependencies {
+    implementation group: 'com.google.guava', name: 'guava', version: '33.4.0-jre'
+}
+
+repositories {
+    mavenCentral()
+}
