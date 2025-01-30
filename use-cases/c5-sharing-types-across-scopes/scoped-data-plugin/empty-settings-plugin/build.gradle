@@ -1,0 +1,16 @@
+plugins {
+    id 'java-gradle-plugin'
+}
+
+repositories {
+    mavenCentral()
+}
+
+gradlePlugin {
+    plugins {
+        scopedDataEmptySettingsPlugin {
+            id = 'scoped-data-empty-settings-plugin'
+            implementationClass = 'com.example.scopeddata.emptysettingsplugin.EmptySettingsPlugin'
+        }
+    }
+}

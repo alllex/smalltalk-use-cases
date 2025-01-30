@@ -20,34 +20,31 @@ defines its data types in another (nested) included build (named `api-build`).
 Allows code in init scripts to contribute and inspect data. This does not work though,
 as the Gradle plugin classloader isn't shared with the other scopes.
 
-### A plugin for settings scripts (`Plugin<Settings>`)
+### Some plugins for settings scripts (`Plugin<Settings>`)
 
 Allows code in settings scripts to contribute and inspect data. Will also automatically apply
 the project plugin to every project, unless the project chooses to skip auto-application (via `gradle.properties`).
 
-### A plugin for project build scripts (`Plugin<Project>`)
+### Some plugins for project build scripts (`Plugin<Project>`)
 
 Allows code in project build logic to contribute and inspect data.
 
 ## Build structure
 
-This basic build contains a few projects which we apply `ProjectPlugin` to.
-We also apply `SettingsPlugin` in `settings.gradle.kts`
-And we try to apply `GradlePlugin` in the custom `custom.init.gradle.kts` script (specified via `gradle help -I custom.init.gradle.kts`),
-but that does not work due to incompatible classloaders.
+This basic build contains a few projects which we apply `ProjectPlugin` and  `ProjectPlugin2` to.
+We also apply `SettingsPlugin` in `settings.gradle.kts`, and additional included builds that do the same.
 
-### Included build
-
-There is also an included build `included-build1` meant to show the same plugin classloader seems to be used across different builds
-in the build tree.
+We try to apply `GradlePlugin` in the custom `custom.init.gradle.kts` script (specified via `gradle help -I custom.init.gradle.kts`),
+but that does not work due to different classloaders being used.
 
 ## Testing
 
-This needs a build from the `(alllex/ip/smalltalk/type-nominal-project-models` branch.
+This needs a build from the branch that backs [this PR](https://github.com/gradle/gradle/pull/32235).
 
 `gradle help`
 
-should work.
+shows we get different type instances for `LanguageMetadata` across builds in a composite build, but only if we are careful
+and apply the same plugins everywhere (projects for cross-project compatibility, and settings for cross-build compatibility).
 
 However,
 

@@ -1,6 +1,12 @@
+rootProject.name="plugins"
+
+
 includeBuild("api-build")
 include("settings-plugin")
+include("codeless-settings-plugin")
+include("empty-settings-plugin")
 include("project-plugin")
+include("project-plugin2")
 include("gradle-plugin")
 
 pluginManagement {

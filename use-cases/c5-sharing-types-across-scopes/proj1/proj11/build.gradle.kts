@@ -3,16 +3,14 @@ import com.example.scopeddata.LanguageMetadata
 plugins {
     `java-base`
     `java-library`
-    id("scoped-data-project-plugin")
+    //id("scoped-data-project-plugin")
 }
 
 buildscript {
     dependencies {
-
-        classpath("api-build:api:1.0")
+        //classpath("api-build:api:1.0")
         classpath("org.apache.commons:commons-lang3:3.16.0")
         classpath("commons-net:commons-net:3.11.1")
-
     }
 }
 

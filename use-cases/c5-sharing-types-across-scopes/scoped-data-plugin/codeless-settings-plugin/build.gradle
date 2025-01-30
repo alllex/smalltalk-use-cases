@@ -1,0 +1,25 @@
+plugins {
+    id 'java-gradle-plugin'
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    implementation ("api-build:api:1.0")
+    implementation ("api-build:impl:1.0")
+    implementation group: 'com.google.guava', name: 'guava', version: '33.4.0-jre'
+    //implementation project(":project-plugin")
+}
+
+
+gradlePlugin {
+    plugins {
+        scopedDataCodelessSettingsPlugin {
+            id = 'scoped-data-codeless-settings-plugin'
+            implementationClass = 'com.example.scopeddata.codelesssettingsplugin.CodelessSettingsPlugin'
+        }
+    }
+}

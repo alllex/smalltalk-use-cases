@@ -1,14 +1,15 @@
 import com.example.scopeddata.LanguageMetadata
 
 plugins {
-    id("scoped-data-project-plugin")
+    id("scoped-data-project-plugin2")
     `groovy-gradle-plugin`
+    id("scoped-data-project-plugin")
 }
 
 buildscript {
     dependencies {
 
-        classpath("api-build:api:1.0")
+       // classpath("api-build:api:1.0")
         classpath("org.apache.commons:commons-lang3:3.12.0")
     }
 }
